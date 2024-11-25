@@ -18,7 +18,13 @@
         <td>01/01/2024</td>
         <td>
           <button class="btn btn-warning btn-sm">Modificar</button>
-          <button class="btn btn-danger btn-sm">Eliminar</button>
+          <button
+            class="btn btn-danger btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+            (click)="openDeleteConfirmation('Nota001')">
+            Eliminar
+          </button>
           <button class="btn btn-secondary btn-sm">Imprimir</button>
         </td>
       </tr>
@@ -26,3 +32,8 @@
     </tbody>
   </table>
 </div>
+<app-delete-confirmation
+  [title]="'Eliminar Nota de Ingreso'"
+  [message]="deleteMessage"
+  (confirm)="onDeleteConfirmed()"
+></app-delete-confirmation>

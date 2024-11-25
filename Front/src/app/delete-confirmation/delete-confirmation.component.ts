@@ -7,11 +7,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
 })
 export class DeleteConfirmationComponent {
-  @Input() title: string = 'Eliminar'; // Título del modal
-  @Input() message: string = '¿Está seguro de que desea realizar esta acción?'; // Mensaje principal
-  @Output() confirm = new EventEmitter<void>(); // Evento para confirmar la acción
+  @Input() title: string = 'Eliminar'; 
+  @Input() message: string = '¿Está seguro de que desea realizar esta acción?'; 
+  @Output() confirm = new EventEmitter<void>(); 
 
   onConfirm() {
-    this.confirm.emit(); // Emitir el evento cuando se confirme
+    this.confirm.emit();
+    const modalElement = document.getElementById('deleteModal') as HTMLElement;
+    if (modalElement) {
+      modalElement.style.display = 'none';
+    }
   }
 }
