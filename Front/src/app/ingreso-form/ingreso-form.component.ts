@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ingreso-form',
@@ -14,24 +14,36 @@ export class IngresoFormComponent {
   fechaIngreso: string = '';
   productoSeleccionado: string = 'Libro 1';
   cantidad: number = 0;
-  precio: number = 0;
 
   productosAgregados: Array<{ producto: string; cantidad: number; precio: number }> = [];
   cantidadTotal: number = 0;
   precioTotal: number = 0;
 
+  preciosProductos: { [key: string]: number } = {
+    'Libro 1': 10,
+    'Libro 2': 20,
+    'Libro 3': 30,
+    'Libro 4': 40,
+  };
+
+  get productosDisponibles() {
+    return Object.keys(this.preciosProductos);
+  }
+
   addProducto() {
-    if (this.cantidad > 0 && this.precio > 0) {
+    if (this.cantidad > 0 && this.productoSeleccionado) {
+      const precioUnitario = this.preciosProductos[this.productoSeleccionado] || 0;
+      const totalProducto = this.cantidad * precioUnitario;
+
       this.productosAgregados.push({
         producto: this.productoSeleccionado,
         cantidad: this.cantidad,
-        precio: this.precio,
+        precio: totalProducto,
       });
+
       this.actualizarTotales();
       this.cantidad = 0;
-      this.precio = 0;
-    } else {
-      alert('Por favor, ingrese una cantidad y precio válidos.');
+      this.productoSeleccionado = 'Libro 1';
     }
   }
 

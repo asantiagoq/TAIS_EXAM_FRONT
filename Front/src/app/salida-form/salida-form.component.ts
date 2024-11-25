@@ -42,7 +42,6 @@ export class SalidaFormComponent {
 
       this.calcularTotales();
 
-      // Resetear los campos después de añadir
       this.cantidad = 0;
       this.productoSeleccionado = 'Libro 1';
     }

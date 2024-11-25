@@ -1,5 +1,5 @@
 <div class="modal fade" id="ingresoModal" tabindex="-1" aria-labelledby="ingresoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered"> <!-- Cambiado modal-lg por modal-xl -->
+    <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title" id="ingresoModalLabel">CREAR NOTA DE INGRESO</h5>
@@ -33,13 +33,20 @@
             </div>
   
             <div class="row align-items-end mb-3">
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <label for="producto" class="form-label">Seleccionar Producto</label>
-                <select id="producto" class="form-select" [(ngModel)]="productoSeleccionado" name="producto">
-                  <option>Libro 1</option>
+                <select
+                  id="producto"
+                  class="form-select"
+                  [(ngModel)]="productoSeleccionado"
+                  name="producto"
+                >
+                  <option *ngFor="let producto of productosDisponibles" [value]="producto">
+                    {{ producto }}
+                  </option>
                 </select>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label for="cantidad" class="form-label">Cantidad</label>
                 <input
                   type="number"
@@ -50,19 +57,8 @@
                   placeholder="Cantidad"
                 />
               </div>
-              <div class="col-md-3">
-                <label for="precio" class="form-label">Precio</label>
-                <input
-                  type="number"
-                  id="precio"
-                  class="form-control"
-                  [(ngModel)]="precio"
-                  name="precio"
-                  placeholder="Precio"
-                />
-              </div>
-              <div class="col-md-1 text-end">
-                <button type="button" class="btn btn-info w-100" (click)="addProducto()">Añadir</button> <!-- Botón ajustado -->
+              <div class="col-md-2 text-end">
+                <button type="button" class="btn btn-info w-100" (click)="addProducto()">Añadir</button>
               </div>
             </div>
           </form>
@@ -80,9 +76,11 @@
               <tr *ngFor="let item of productosAgregados; let i = index">
                 <td>{{ item.producto }}</td>
                 <td>{{ item.cantidad }}</td>
-                <td>{{ item.precio }}</td>
+                <td>{{ item.precio | currency }}</td>
                 <td>
-                  <button type="button" class="btn btn-danger btn-sm" (click)="eliminarProducto(i)">Eliminar</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="eliminarProducto(i)">
+                    Eliminar
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -90,7 +88,7 @@
   
           <div class="text-end">
             <p>Cantidad Total: {{ cantidadTotal }}</p>
-            <p>Precio Total: ${{ precioTotal }}</p>
+            <p>Precio Total: {{ precioTotal | currency }}</p>
           </div>
         </div>
   
