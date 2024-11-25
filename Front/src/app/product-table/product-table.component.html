@@ -1,37 +1,44 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>COD</th>
-      <th>PRODUCTO</th>
-      <th>CANT</th>
-      <th>PRECIO UNITARIO</th>
-      <th>ACCIONES</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>P01</td>
-      <td>Libro 1</td>
-      <td>2</td>
-      <td>20.00</td>
-      <td>
-        <button class="btn btn-warning btn-sm me-2">Modificar</button>
-        <button
-          class="btn btn-danger btn-sm"
-          data-bs-toggle="modal"
-          data-bs-target="#deleteModal"
-          (click)="prepareDelete('Libro 1')"
-        >
-          Eliminar
-        </button>
-        
-      </td>
-    </tr>
-  </tbody>
-</table>
+<!-- Encabezado del componente -->
+<app-header></app-header>
+
+<!-- Tabla de productos -->
+<div class="table-responsive mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>COD</th>
+        <th>PRODUCTO</th>
+        <th>CANT</th>
+        <th>PRECIO UNITARIO</th>
+        <th>ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>P01</td>
+        <td>Libro 1</td>
+        <td>2</td>
+        <td>20.00</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2">Modificar</button>
+          <button
+            class="btn btn-danger btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+            (click)="prepareDelete('Libro 1')"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <app-delete-confirmation
   [title]="'Eliminar Producto'"
   [message]="'¿Está seguro de que desea eliminar el producto seleccionado?'"
   (confirm)="onDeleteConfirmed()"
 ></app-delete-confirmation>
+
+<app-product-form></app-product-form>
