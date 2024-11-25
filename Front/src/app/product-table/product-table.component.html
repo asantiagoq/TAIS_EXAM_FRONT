@@ -1,27 +1,37 @@
-<div class="table-responsive">
-    <table class="table table-striped">
-      <thead class="table-primary">
-        <tr>
-          <th>COD</th>
-          <th>PRODUCTO</th>
-          <th>CANT</th>
-          <th>PRECIO UNITARIO</th>
-          <th>ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>P02</td>
-          <td>Libro 1</td>
-          <td>2</td>
-          <td>20.00</td>
-          <td>
-            <button class="btn btn-warning btn-sm me-2">Modificar</button>
-            <button class="btn btn-danger btn-sm">Eliminar</button>
-          </td>
-        </tr>
-       
-      </tbody>
-    </table>
-  </div>
-  
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>COD</th>
+      <th>PRODUCTO</th>
+      <th>CANT</th>
+      <th>PRECIO UNITARIO</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>P01</td>
+      <td>Libro 1</td>
+      <td>2</td>
+      <td>20.00</td>
+      <td>
+        <button class="btn btn-warning btn-sm me-2">Modificar</button>
+        <button
+          class="btn btn-danger btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteModal"
+          (click)="prepareDelete('Libro 1')"
+        >
+          Eliminar
+        </button>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-delete-confirmation
+  [title]="'Eliminar Producto'"
+  [message]="'¿Está seguro de que desea eliminar el producto seleccionado?'"
+  (confirm)="onDeleteConfirmed()"
+></app-delete-confirmation>
